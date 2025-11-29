@@ -40,16 +40,16 @@ app.use(
   })
 );
 
-app.get("/", (req, res) => {
-  res.json({
-    message: "Server is Running",
-  });
-});
+// app.get("/", (req, res) => {
+//   res.json({
+//     message: "Server is Running",
+//   });
+// });
 
 if (envMode === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.get("*", (req, res) => {
+  app.get("/:path(*)?", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
