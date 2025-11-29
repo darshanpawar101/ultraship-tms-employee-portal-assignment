@@ -4,7 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import { connectDB } from "./database/db.js";
 import { graphQLServer } from "./graphql/graphql.js";
-import { expressMiddleware } from "@as-integrations/express5";
+import { expressMiddleware } from "@as-integrations/express4";
 import { authenticate } from "./middleware/auth.middleware.js";
 
 import path from "path";
@@ -49,7 +49,7 @@ app.use(
 if (envMode === "production") {
   app.use(express.static(path.join(__dirname, "../frontend/dist")));
 
-  app.get("/:path(*)", (req, res) => {
+  app.get("/*", (req, res) => {
     res.sendFile(path.join(__dirname, "../frontend", "dist", "index.html"));
   });
 }
